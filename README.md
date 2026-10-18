@@ -1,3 +1,4 @@
+# NEO MWASHI
 # Inventory Management System – Admin Portal
 
 A Flask REST API and command-line interface for managing a small retailer's inventory.

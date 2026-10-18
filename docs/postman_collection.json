@@ -1,0 +1,357 @@
+{
+  "info": {
+    "name": "Inventory Admin Portal",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List items",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Filter by brand",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory?brand=silk",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory"
+          ],
+          "query": [
+            {
+              "key": "brand",
+              "value": "silk"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get item 1",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create item",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_name\": \"Green Tea\",\n  \"price\": 5.5,\n  \"stock\": 12\n}"
+        }
+      }
+    },
+    {
+      "name": "Create item - invalid (expect 400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": -1\n}"
+        }
+      }
+    },
+    {
+      "name": "Update item 1",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 4.25,\n  \"stock\": 30\n}"
+        }
+      }
+    },
+    {
+      "name": "Delete item 3",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/3",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Low stock",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/low-stock?threshold=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "low-stock"
+          ],
+          "query": [
+            {
+              "key": "threshold",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "OFF lookup by barcode",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/external/product/3017620422003",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "external",
+            "product",
+            "3017620422003"
+          ]
+        }
+      }
+    },
+    {
+      "name": "OFF search by name",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/external/search?name=nutella",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "external",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "nutella"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Import from OFF by barcode",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/import",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "import"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"barcode\": \"3017620422003\",\n  \"price\": 4.49,\n  \"stock\": 20\n}"
+        }
+      }
+    },
+    {
+      "name": "Import from OFF by name",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/import",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "import"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"spaghetti barilla\",\n  \"price\": 2.0,\n  \"stock\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Enrich item 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/inventory/2/enrich",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "inventory",
+            "2",
+            "enrich"
+          ]
+        }
+      }
+    }
+  ]
+}

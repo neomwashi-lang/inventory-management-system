@@ -1,4 +1,3 @@
-# NEO MWASHI
 # Inventory Management System – Admin Portal
 
 A Flask REST API and command-line interface for managing a small retailer's inventory.
@@ -17,8 +16,6 @@ Product details are supplemented with live data from the
 
 ## Installation and setup
 
-Requires Python 3.9+.
-
 ```bash
 git clone <your-repo-url>
 cd inventory-management-system
@@ -29,9 +26,9 @@ pip install -r requirements.txt
 
 ### Run the API (Terminal 1)
 ```bash
-python run.py                   # http://127.0.0.1:5000, Flask debug mode on
+python run.py                   # http://127.0.0.1:5555, Flask debug mode on
 ```
-Use `PORT=5001 python run.py` if port 5000 is taken (macOS AirPlay uses it).
+Use `PORT=5001 python run.py` if port 5555 is taken
 
 ### Run the CLI (Terminal 2)
 ```bash
@@ -162,3 +159,20 @@ Each feature was developed on its own branch and merged through a pull request
 Small single-purpose modules, docstrings on every module/function, one place for validation,
 the storage layer isolated behind functions (swap the array for a real database without touching routes),
 and the app factory pattern for easy testing.
+
+## Screenshots
+![CLI menu](docs/cli-menu.png)
+![OpenFoodFacts lookup](docs/lookup.png)
+
+## Author
+Neo Mwashi
+
+## Future improvements
+- **Persistent database:** replace the in-memory array with SQLite/PostgreSQL (only `app/storage.py` needs to change).
+- **Authentication:** API keys or JWT tokens so only authorized staff can modify inventory.
+- **Caching and retries:** cache OpenFoodFacts responses and retry on temporary failures.
+- **Pagination and sorting** for large inventories.
+- **Bulk CSV import/export** and inventory value reports.
+- **Low-stock alerts** by email or Slack.
+- **Web dashboard** built on the existing REST API.
+- **CI and deployment:** GitHub Actions for automatic testing, Docker and gunicorn for production.

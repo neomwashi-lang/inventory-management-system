@@ -11,7 +11,7 @@ import requests
 
 BASE_URL = "https://world.openfoodfacts.org"
 # OpenFoodFacts asks every app to send a custom User-Agent.
-USER_AGENT = "InventoryAdminPortal/1.0 (student project)"
+USER_AGENT = "InventoryAdminPortal/1.0 (student project by Neo Mwashi; leonmwashi@student.moringa.com)"
 TIMEOUT_SECONDS = 10
 FIELDS = "code,product_name,brands,ingredients_text,categories,quantity,nutriscore_grade,image_front_url"
 

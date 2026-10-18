@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Author: Neo Mwashi"""
 """Command-line interface for the inventory admin API.
 
 Run ``python cli.py --help`` for the commands, or run ``python cli.py`` with no
@@ -11,7 +12,7 @@ import sys
 
 import requests
 
-DEFAULT_API_URL = os.environ.get("INVENTORY_API_URL", "http://127.0.0.1:5000")
+DEFAULT_API_URL = os.environ.get("INVENTORY_API_URL", "http://127.0.0.1:5555")
 
 
 class APIError(Exception):
@@ -20,7 +21,6 @@ class APIError(Exception):
     def __init__(self, message, status_code=None):
         super().__init__(message)
         self.status_code = status_code
-
 
 # ---------------------------------------------------------------- API client
 class InventoryClient:
@@ -85,7 +85,6 @@ class InventoryClient:
         return self._call("POST", f"/inventory/{item_id}/enrich",
                           params={"overwrite": str(overwrite).lower()})
 
-
 # ----------------------------------------------------- input validators
 def price_type(value):
     try:
@@ -115,7 +114,6 @@ def id_type(value):
     if number < 1:
         raise argparse.ArgumentTypeError("item ID must be 1 or greater.")
     return number
-
 
 # -------------------------------------------------------------- formatting
 def _clip(text, width):
@@ -156,7 +154,6 @@ def print_external(product):
     print(f"  {product['product_name']}  [{product['barcode']}]")
     print(f"  Brand: {product['brands'] or '-'} | Quantity: {product['quantity'] or '-'} | "
           f"Nutri-Score: {(product.get('nutriscore_grade') or '-').upper()}")
-
 
 # ---------------------------------------------------------------- commands
 def cmd_list(client, args):
@@ -236,7 +233,6 @@ def cmd_enrich(client, args):
     item = client.enrich(args.id, overwrite=args.overwrite)
     print(f"Item #{item['id']} enriched with OpenFoodFacts data:")
     print_item(item)
-
 
 # ----------------------------------------------------------- interactive menu
 MENU = """
@@ -352,7 +348,6 @@ def cmd_menu(client, args=None):
         except (EOFError, KeyboardInterrupt):
             print()
             return 0
-
 
 # ----------------------------------------------------------- argument parser
 def build_parser():
